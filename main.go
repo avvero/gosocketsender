@@ -4,6 +4,7 @@ import (
 	"net"
 	"os"
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -12,6 +13,7 @@ func main() {
 	conn, err := net.DialTCP("tcp", nil, tcpAddr)
 	checkError(err)
 	_, err = conn.Write([]byte("MESSAGE\ndestination:fxappender\ncontent-type:text/plain\ncontent-length:2\n\n{}"))
+	time.Sleep(3000 * time.Millisecond)
 	conn.Close()
 	os.Exit(0)
 }
